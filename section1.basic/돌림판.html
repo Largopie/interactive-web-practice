@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>돌림판</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1.625rem;
+      }
+      .buttonWrapper {
+        display: flex;
+        gap: 12px;
+      }
+      img {
+        width: 100px;
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.94, -0.165, 0.15, 1.01);
+        /* transition: all 4s ease-in-out; */
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const resetBtn = document.querySelector('.reset');
+        const startBtn = document.querySelector('.start');
+        const degText = document.querySelector('h1');
+        const bottle = document.querySelector('img');
+        let isMoving = false;
+
+        const reset = () => {
+          const resetNum = 0;
+
+          isMoving = false;
+          startBtn.textContent = '돌리기';
+          bottle.style.transitionDuration = `${resetNum}s`;
+          bottle.style.transform = `rotate(${resetNum}deg)`;
+          degText.innerText = `${resetNum}deg`;
+        };
+
+        startBtn.addEventListener('click', () => {
+          if (!isMoving) {
+            const basicSpin = 360 * 6;
+            const duration = 7;
+            const deg = Math.round(basicSpin + Math.random() * 360);
+
+            bottle.style.transitionDuration = `${duration}s`;
+            startBtn.textContent = '회전중';
+            degText.innerText = deg + 'deg';
+            bottle.style.transform = `rotate(${deg}deg)`;
+          }
+          isMoving = true;
+        });
+
+        bottle.ontransitionend = () => {
+          startBtn.textContent = '회전끝';
+        };
+
+        resetBtn.addEventListener('click', reset);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>0deg</h1>
+    <div class="buttonWrapper">
+      <button class="reset">초기화</button>
+      <button class="start">돌리기</button>
+    </div>
+    <p>다시 돌리려면 초기화 버튼을 누르세요.</p>
+    <img src="image/soju.png" alt="soju" class="soju" />
+  </body>
+</html>
