@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>업다운게임</title>
+    <style>
+      body {
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+      }
+      body,
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrapper {
+        gap: 10px;
+      }
+
+      .wrapper {
+        padding: 20px;
+        background-color: #d5d5d5;
+      }
+
+      .inputWrapper > input,
+      button {
+        padding: 10px 20px;
+        font-size: 1.625rem;
+      }
+
+      button {
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+
+      button:hover {
+        opacity: 0.7;
+      }
+
+      input {
+        width: 200px;
+        outline: none;
+      }
+
+      .reset {
+        background-color: tomato;
+        color: white;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const h2 = document.querySelector('h2');
+        const submit = document.querySelector('.submit');
+        const reset = document.querySelector('.reset');
+        const input = document.querySelector('input');
+
+        let randomNumber = Math.ceil(Math.random() * 10);
+
+        console.log(`정답: ${randomNumber}`);
+
+        submit.addEventListener('click', () => {
+          const inputNumber = Number(input.value);
+
+          if (inputNumber === randomNumber) {
+            h2.innerText = '정답! 축하합니다 🎉';
+          } else if (inputNumber > randomNumber) {
+            h2.innerText = '다운 ⬇️';
+          } else {
+            h2.innerText = '업 ⬆️';
+          }
+        });
+
+        reset.addEventListener('click', () => {
+          randomNumber = Math.ceil(Math.random() * 10);
+          h2.innerText = '업, 다운, 정답?';
+          console.log(`정답: ${randomNumber}`);
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>숫자 맞추기 게임!!</h1>
+      <span>(숫자는 1~10 사이이며, 새로고침 시 숫자는 초기화됩니다.)</span>
+      <h2>업, 다운, 정답?</h2>
+      <div class="inputWrapper">
+        <input min="1" max="10" type="number" />
+        <button class="submit">확인</button>
+      </div>
+      <button class="reset">숫자 초기화</button>
+    </div>
+  </body>
+</html>
