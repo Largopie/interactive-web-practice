@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>타이머더하기</title>
+  </head>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper {
+      width: 500px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    button,
+    span {
+      font-size: 2rem;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      const number = document.querySelector('span');
+      const button = document.querySelector('button');
+
+      button.addEventListener('click', () => {
+        interval();
+      });
+
+      let timer;
+
+      const interval = () => {
+        clearInterval(timer);
+        let secNum = 0;
+
+        timer = setInterval(() => {
+          secNum++;
+          number.innerText = secNum;
+        }, 10);
+      };
+    };
+  </script>
+  <body>
+    <div class="wrapper">
+      <button>더하기 시작</button>
+      <span>0</span>
+    </div>
+  </body>
+</html>
