@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>페이징.배경</title>
+    <style>
+      body {
+        transition: background 2.5s ease-out;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1.25rem;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const prevButton = document.querySelector('.prevButton');
+        const nextButton = document.querySelector('.nextButton');
+        const h1 = document.querySelector('h1');
+        const bgColorArr = ['#FDF321', '#C1BAED', '#F3294B', '#FCC8DF', '#333ABC'];
+        let pageNum = Math.round(Math.random() * (bgColorArr.length - 1));
+        const totalNum = bgColorArr.length;
+
+        prevButton.addEventListener('click', () => {
+          if (pageNum > 0) {
+            pageNum--;
+          } else {
+            pageNum = totalNum - 1;
+          }
+          changeColor();
+        });
+
+        nextButton.addEventListener('click', () => {
+          if (pageNum < totalNum - 1) {
+            pageNum++;
+          } else {
+            pageNum = 0;
+          }
+          changeColor();
+        });
+
+        const changeColor = () => {
+          h1.innerText = `${pageNum}페이지 입니다.`;
+          document.querySelector('body').style.backgroundColor = bgColorArr[pageNum];
+        };
+
+        changeColor();
+      };
+    </script>
+  </head>
+  <body>
+    <button type="button" class="prevButton">PREV</button>
+    <button type="button" class="nextButton">NEXT</button>
+    <h1>0페이지 입니다.</h1>
+  </body>
+</html>
