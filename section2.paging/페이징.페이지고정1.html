@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>페이징.페이지고정</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        transition: background 1s ease-out;
+        overflow-x: hidden;
+        color: white;
+        background-color: black;
+      }
+
+      section {
+        z-index: 99;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      section > h1 {
+        font-size: 40px;
+      }
+
+      section:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .image.active {
+        opacity: 1;
+      }
+
+      .image {
+        position: fixed;
+        width: 100%;
+        top: 10%;
+        left: 10%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+
+      .innerWrap {
+        position: relative;
+        width: 300px;
+        margin-top: 200px;
+        left: 10%;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const section = document.getElementsByTagName('section');
+        const images = document.querySelectorAll('.image');
+        const totalNum = images.length;
+        let pageNum = 0;
+
+        window.addEventListener('scroll', () => {
+          let scroll = this.scrollY;
+
+          for (let i = 0; i < totalNum; i++) {
+            if (
+              scroll > section[i].offsetTop - window.innerHeight / 1.5 &&
+              scroll < section[i].offsetTop + section[i].offsetHeight - window.innerHeight / 1.5
+            ) {
+              pageNum = i;
+              break;
+            }
+          }
+          changePicture();
+        });
+
+        const changePicture = () => {
+          for (let i = 0; i < totalNum; i++) {
+            images[i].classList.remove('active');
+          }
+          images[pageNum].classList.add('active');
+        };
+
+        changePicture();
+      };
+    </script>
+  </head>
+  <body>
+    <section>
+      <h1>페이지 타이틀</h1>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h1>page 1</h1>
+        <p>
+          Dolor veniam ad commodo mollit laboris pariatur aliquip exercitation ullamco sit ea adipisicing exercitation tempor. Nisi adipisicing nostrud veniam
+          veniam minim mollit excepteur eu cupidatat dolor sunt. Labore ullamco ut reprehenderit dolor amet. Irure deserunt tempor nostrud consequat ullamco
+          eiusmod commodo ea et laboris anim.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h1>page 2</h1>
+        <p>
+          Enim pariatur officia veniam pariatur nulla velit cupidatat aute consequat laborum. Labore ut quis qui sint et reprehenderit ipsum. Duis fugiat ea
+          ipsum laborum tempor proident eu magna sint in mollit. Lorem consequat cillum eu occaecat consequat reprehenderit ad adipisicing. Ut quis id occaecat
+          consequat. Ea enim elit nulla reprehenderit.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h1>page 3</h1>
+        <p>
+          Amet ipsum exercitation laboris id sit nulla laboris adipisicing et culpa aliqua consequat Lorem non. Voluptate laboris labore laborum consequat irure
+          mollit dolore ex pariatur aliqua nostrud ad. Anim amet minim ex sunt velit fugiat sint ad pariatur nostrud ea nulla amet consequat. Laborum qui
+          exercitation ea ex consequat ullamco culpa. Id nulla eiusmod culpa commodo culpa.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h1>page 4</h1>
+        <p>
+          Aliqua laborum velit consectetur amet ut labore exercitation aliquip tempor est. Incididunt mollit labore eiusmod magna exercitation officia labore
+          non in consectetur qui est. Incididunt excepteur aute tempor amet commodo reprehenderit ea cupidatat ipsum exercitation dolore. Quis adipisicing elit
+          nisi anim occaecat nostrud consequat proident qui anim ad.
+        </p>
+      </div>
+    </section>
+    <div class="imageWrapper">
+      <img class="image" alt="sample0" src="./img/sample0.png" />
+      <img class="image" alt="sample1" src="./img/sample1.png" />
+      <img class="image" alt="sample2" src="./img/sample2.png" />
+      <img class="image" alt="sample3" src="./img/sample3.png" />
+      <img class="image" alt="sample4" src="./img/sample4.png" />
+    </div>
+  </body>
+</html>
