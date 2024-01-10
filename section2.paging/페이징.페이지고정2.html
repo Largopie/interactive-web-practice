@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>페이징 페이지고정2</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: #e8e19b;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      ul {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .pointBtn li {
+        font-size: 1.625rem;
+        cursor: pointer;
+      }
+
+      .pointBtn li.active {
+        color: #9b9668;
+      }
+
+      .innerWrap {
+        width: 300px;
+        height: 400px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        top: 40%;
+        margin-left: 100px;
+      }
+
+      section {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      section.active .image {
+        opacity: 1;
+      }
+
+      .image {
+        position: fixed;
+        width: 50%;
+        left: 45%;
+        top: 10%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const section = document.querySelectorAll('section');
+        const images = document.querySelectorAll('.image');
+        const pointBtns = document.querySelectorAll('.pointBtn li');
+        const totalNum = section.length;
+        let pageNum = 0;
+
+        window.addEventListener('scroll', () => {
+          let scroll = this.scrollY;
+
+          for (let i = 0; i < totalNum; i++) {
+            if (section[i].offsetTop - window.innerHeight / 3 < scroll && section[i].offsetTop - window.innerHeight / 3 + section[i].offsetHeight > scroll) {
+              pageNum = i;
+              break;
+            }
+          }
+          changeImage();
+        });
+
+        for (let i = 0; i < totalNum; i++) {
+          (function () {
+            pointBtns[i].addEventListener('click', () => {
+              pageNum = i;
+              changeImage();
+
+              window.scrollTo({
+                top: section[i].offsetTop,
+                behavior: 'smooth',
+              });
+            });
+          })(i);
+        }
+
+        function changeImage() {
+          for (let i = 0; i < totalNum; i++) {
+            section[i].classList.remove('active');
+            pointBtns[i].classList.remove('active');
+          }
+          section[pageNum].classList.add('active');
+          pointBtns[pageNum].classList.add('active');
+        }
+
+        changeImage();
+      };
+    </script>
+  </head>
+  <body>
+    <ul class="pointBtn">
+      <li />
+      <li />
+      <li />
+      <li />
+      <li />
+      <li />
+      <li />
+      <li />
+    </ul>
+
+    <section class="title">
+      <h1>페이지 타이틀</h1>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 1</h2>
+        <p>기본적인 스케치 입니다.</p>
+      </div>
+      <img class="image" src="./img/pic_1.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 2</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_2.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 3</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_3.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 4</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_4.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 5</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_5.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 6</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_6.jpg" />
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>Page 7</h2>
+        <p>explain</p>
+      </div>
+      <img class="image" src="./img/pic_7.jpg" />
+    </section>
+  </body>
+</html>
