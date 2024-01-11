@@ -62,6 +62,29 @@
       height: 100vh;
     }
 
+    .navigation {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .pointBtn {
+      font-size: 32px;
+      color: #d5d5d5;
+      z-index: 99;
+    }
+
+    .pointBtn > li {
+      cursor: pointer;
+      padding: 8px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .pointBtn > li.active {
+      color: #000;
+    }
+
     .tab {
       position: fixed;
       width: 100vw;
@@ -104,12 +127,12 @@
 
     .pointList > li:hover::after,
     li:hover::before,
-    li.active::after,
-    li.active::before {
+    .pointList > li.active::after,
+    .pointList > li.active::before {
       width: 50%;
     }
 
-    li {
+    .pointList > li {
       list-style: none;
       padding: 20px;
     }
@@ -117,12 +140,22 @@
   <script>
     window.onload = () => {
       const pointList = document.querySelectorAll('.pointList li');
+      const pointBtn = document.querySelectorAll('.pointBtn li');
       const sections = document.querySelectorAll('section');
       const totalNum = sections.length;
       let pageNum = 0;
 
       for (let i = 0; i < totalNum; i++) {
         (function () {
+          pointBtn[i].addEventListener('click', () => {
+            pageNum = i;
+            changePage();
+
+            window.scrollTo({
+              top: sections[pageNum].offsetTop,
+              behavior: 'smooth',
+            });
+          });
           pointList[i].addEventListener('click', () => {
             pageNum = i;
             changePage();
@@ -139,7 +172,6 @@
         let scroll = scrollY;
         for (let i = 0; i < totalNum; i++) {
           if (sections[i].offsetTop - window.innerHeight / 3 <= scroll && sections[i].offsetTop - window.innerHeight / 3 + sections[i].offsetHeight > scroll) {
-            console.log(i);
             pageNum = i;
             break;
           }
@@ -151,9 +183,11 @@
         for (let i = 0; i < totalNum; i++) {
           sections[i].classList.remove('active');
           pointList[i].classList.remove('active');
+          pointBtn[i].classList.remove('active');
         }
         sections[pageNum].classList.add('active');
         pointList[pageNum].classList.add('active');
+        pointBtn[pageNum].classList.add('active');
       };
 
       changePage();
@@ -166,6 +200,15 @@
         <li>블레이저 미드 '77 빈티지</li>
         <li>에어맥스 95</li>
         <li>리액트 비전 3M</li>
+      </ul>
+    </div>
+
+    <div class="navigation">
+      <ul class="pointBtn">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
 
