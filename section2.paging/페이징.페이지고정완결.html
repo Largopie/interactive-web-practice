@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>페이징 페이지고정완결(나이키 스니커즈)</title>
+  </head>
+  <style>
+    body,
+    h1,
+    h2 {
+      padding: 0;
+      margin: 0;
+    }
+
+    .imageWrap {
+      position: fixed;
+      top: 50%;
+      left: 40%;
+    }
+
+    section.active .imageWrap img {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0, 0);
+    }
+
+    .imageWrap img {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      width: 340px;
+      transition: all 0.5s ease-in-out;
+      transform: translate(-100px, -150px) rotate(-15deg);
+    }
+
+    .imageWrap img:nth-child(1) {
+      left: 340px;
+      top: 100px;
+      transition-delay: 0.1s;
+      transform: translate(100px, 150px) rotate(-15deg);
+    }
+
+    .title {
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .innerWrap {
+      position: relative;
+      width: 340px;
+      background-color: rgba(255, 255, 255, 0.7);
+      top: 50%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+    }
+
+    section {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .tab {
+      position: fixed;
+      width: 100vw;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .pointList {
+      display: flex;
+      gap: 20px;
+      margin-right: 30px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .pointList > li {
+      display: inline-block;
+      position: relative;
+    }
+
+    .pointList > li::after {
+      left: 50%;
+    }
+
+    .pointList > li::before {
+      right: 50%;
+    }
+
+    .pointList > li::before,
+    li::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      bottom: 0;
+      height: 4px;
+      background-color: black;
+      transition: all 0.5s;
+    }
+
+    .pointList > li:hover::after,
+    li:hover::before,
+    li.active::after,
+    li.active::before {
+      width: 50%;
+    }
+
+    li {
+      list-style: none;
+      padding: 20px;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      const pointList = document.querySelectorAll('.pointList li');
+      const sections = document.querySelectorAll('section');
+      const totalNum = sections.length;
+      let pageNum = 0;
+
+      for (let i = 0; i < totalNum; i++) {
+        (function () {
+          pointList[i].addEventListener('click', () => {
+            pageNum = i;
+            changePage();
+
+            window.scrollTo({
+              top: sections[pageNum].offsetTop,
+              behavior: 'smooth',
+            });
+          });
+        })(i);
+      }
+
+      window.addEventListener('scroll', () => {
+        let scroll = scrollY;
+        for (let i = 0; i < totalNum; i++) {
+          if (sections[i].offsetTop - window.innerHeight / 3 <= scroll && sections[i].offsetTop - window.innerHeight / 3 + sections[i].offsetHeight > scroll) {
+            console.log(i);
+            pageNum = i;
+            break;
+          }
+        }
+        changePage();
+      });
+
+      const changePage = () => {
+        for (let i = 0; i < totalNum; i++) {
+          sections[i].classList.remove('active');
+          pointList[i].classList.remove('active');
+        }
+        sections[pageNum].classList.add('active');
+        pointList[pageNum].classList.add('active');
+      };
+
+      changePage();
+    };
+  </script>
+  <body>
+    <div class="tab">
+      <ul class="pointList">
+        <li>홈</li>
+        <li>블레이저 미드 '77 빈티지</li>
+        <li>에어맥스 95</li>
+        <li>리액트 비전 3M</li>
+      </ul>
+    </div>
+
+    <section class="title">
+      <h1>나이키 스니커즈</h1>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>블레이저 미드 '77 빈티지</h2>
+        <p>나이키 블레이저 미드 '77 빈티지는 빈티지한 중창 마감 처리로 나이키 올드 스쿨 농구화의 느낌을 살렸으며, 마치 수년간 보관해온 듯한 룩을 연출합니다.</p>
+      </div>
+      <div class="imageWrap">
+        <img src="./img/nike_1_1.JPG" alt="블레이저 미드" />
+        <img src="./img/nike_1_2.JPG" alt="블레이저 미드" />
+      </div>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>에어맥스 95</h2>
+        <p>
+          나이키 에어맥스 95에는 놀랄만큼 편안한 착화감과 편안함과 시선을 사로 잡는 스타일, 그리고 재생 소재가 어우러져 있습니다. 펠트,메쉬 그리고 인조 가죽의
+          풍부한 텍스처를 선보이며 클래식 러닝 DNA에 새로운 디자인을 선사합니다. 적당히 두툼한 디자인과 부드러운 에어 쿠셔닝, 그리고 나이키 그라인드 고무
+          밑창으로 트렌드를 선도합니다. 이 제품은 중량 기준 20% 이상 재생 소재로 제작했습니다.
+        </p>
+      </div>
+      <div class="imageWrap">
+        <img src="./img/nike_2_1.JPG" alt="에어맥스 95" />
+        <img src="./img/nike_2_2.JPG" alt="에어맥스 95" />
+      </div>
+    </section>
+
+    <section>
+      <div class="innerWrap">
+        <h2>리액트 비전 3M</h2>
+        <p>
+          나이키 리액트 비전은 나이키 리액트 기술과 더없이 폭신한 설포로 차원이 다른 편안함을 제공합니다. 다양한 텍스처와 과장된 비율이 3M™ 디테일과 결합되어
+          초현실적인 독특한 감각을 더해 줍니다.
+        </p>
+      </div>
+      <div class="imageWrap">
+        <img src="./img/nike_3_1.JPG" alt="리액트 비전 3M" />
+        <img src="./img/nike_3_2.JPG" alt="리액트 비전 3M" />
+      </div>
+    </section>
+  </body>
+</html>
