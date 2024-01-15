@@ -1,0 +1,118 @@
+.contentWrap {
+  background: linear-gradient(120deg, #0272a4, #f6a564);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .album {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+
+    .cover {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      cursor: pointer;
+
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+
+    .disk {
+      background: linear-gradient(120deg, #000, #333, #000);
+      position: absolute;
+      width: 392px;
+      height: 392px;
+      border-radius: 50%;
+      animation: rotateAni 10s infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 35%;
+      box-shadow: 2px 14px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+
+      .disk_inner {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        background-color: #0272a4;
+        border-radius: 50%;
+        border: 3px dashed rgba(255, 255, 255, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::after {
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #000;
+        }
+      }
+
+      &:hover {
+        left: 45%;
+      }
+    }
+  }
+}
+
+.buttonWrap {
+  width: 100vw;
+  bottom: 8%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+
+  ul {
+    width: 200px;
+    display: flex;
+    list-style: disc;
+    align-items: center;
+    justify-content: space-evenly;
+
+    li {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(0, 0, 0);
+      }
+    }
+  }
+
+  button {
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    font-weight: 600;
+    border-radius: 4px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+@keyframes rotateAni {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
