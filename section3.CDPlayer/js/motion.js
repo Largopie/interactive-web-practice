@@ -13,7 +13,7 @@ window.onload = () => {
     ['#b13235', '#0d0502'],
     ['#eff1f0', '#829d94'],
   ];
-  let pageNum = 0;
+  let pageNum = Math.floor(Math.random() * totalNum);
 
   prevBtn.addEventListener('click', () => {
     if (pageNum > 0) pageNum--;
