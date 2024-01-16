@@ -1,21 +1,42 @@
+body {
+  overflow: hidden;
+}
+
 .contentWrap {
-  background: linear-gradient(120deg, #0272a4, #f6a564);
+  background: linear-gradient(145deg, #0272a4, #f6a564);
   width: 100vw;
   height: 100vh;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .album {
     position: absolute;
+    visibility: hidden;
+    opacity: 0;
     width: 600px;
     height: 400px;
 
+    &.active {
+      visibility: visible;
+      opacity: 1;
+
+      .cover {
+        right: 35%;
+      }
+      .disk {
+        left: 35%;
+      }
+    }
+
     .cover {
       position: absolute;
+      right: 45%;
       width: 400px;
       height: 400px;
       cursor: pointer;
+      transition: all 1s ease;
 
       img {
         width: inherit;
@@ -33,9 +54,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      left: 35%;
+      left: 55%;
       box-shadow: 2px 14px 40px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease;
+      transition-delay: 0.5s;
+      transition: all 1s ease;
 
       .disk_inner {
         position: absolute;
@@ -86,6 +108,10 @@
       font-size: 1.25rem;
       background-color: rgba(0, 0, 0, 0.4);
       cursor: pointer;
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
 
       &:hover {
         background-color: rgb(0, 0, 0);

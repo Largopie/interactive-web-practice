@@ -1,21 +1,40 @@
+body {
+  overflow: hidden;
+}
+
 .contentWrap {
-  background: linear-gradient(120deg, #0272a4, #f6a564);
+  background: linear-gradient(145deg, #0272a4, #f6a564);
   width: 100vw;
   height: 100vh;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .contentWrap .album {
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
   width: 600px;
   height: 400px;
 }
+.contentWrap .album.active {
+  visibility: visible;
+  opacity: 1;
+}
+.contentWrap .album.active .cover {
+  right: 35%;
+}
+.contentWrap .album.active .disk {
+  left: 35%;
+}
 .contentWrap .album .cover {
   position: absolute;
+  right: 45%;
   width: 400px;
   height: 400px;
   cursor: pointer;
+  transition: all 1s ease;
 }
 .contentWrap .album .cover img {
   width: inherit;
@@ -31,9 +50,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 35%;
+  left: 55%;
   box-shadow: 2px 14px 40px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
+  transition-delay: 0.5s;
+  transition: all 1s ease;
 }
 .contentWrap .album .disk .disk_inner {
   position: absolute;
@@ -79,6 +99,9 @@
   font-size: 1.25rem;
   background-color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
+}
+.buttonWrap ul li.active {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .buttonWrap ul li:hover {
   background-color: rgb(0, 0, 0);
