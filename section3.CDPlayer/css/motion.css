@@ -13,10 +13,18 @@ body {
 }
 .contentWrap .album {
   position: absolute;
+  display: flex;
+  align-items: center;
   visibility: hidden;
   opacity: 0;
   width: 600px;
   height: 400px;
+}
+@media only screen and (max-width: 720px) {
+  .contentWrap .album {
+    width: 300px;
+    height: 200px;
+  }
 }
 .contentWrap .album.active {
   visibility: visible;
@@ -28,6 +36,11 @@ body {
 .contentWrap .album.active .disk {
   left: 35%;
 }
+@media only screen and (max-width: 720px) {
+  .contentWrap .album.active .disk {
+    left: 30%;
+  }
+}
 .contentWrap .album .cover {
   position: absolute;
   right: 45%;
@@ -35,6 +48,12 @@ body {
   height: 400px;
   cursor: pointer;
   transition: all 1s ease;
+}
+@media only screen and (max-width: 720px) {
+  .contentWrap .album .cover {
+    width: 244px;
+    height: 244px;
+  }
 }
 .contentWrap .album .cover img {
   width: inherit;
@@ -55,6 +74,12 @@ body {
   transition-delay: 0.5s;
   transition: all 1s ease;
 }
+@media only screen and (max-width: 720px) {
+  .contentWrap .album .disk {
+    width: 232px;
+    height: 232px;
+  }
+}
 .contentWrap .album .disk .disk_inner {
   position: absolute;
   width: 160px;
@@ -65,6 +90,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media only screen and (max-width: 720px) {
+  .contentWrap .album .disk .disk_inner {
+    width: 72px;
+    height: 72px;
+  }
 }
 .contentWrap .album .disk .disk_inner::after {
   content: "";
@@ -104,7 +135,7 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
 }
 .buttonWrap ul li:hover {
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .buttonWrap button {
   padding: 8px;

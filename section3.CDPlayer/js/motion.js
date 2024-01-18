@@ -53,5 +53,40 @@ window.onload = () => {
     }
   };
 
+  const mobileCheck = () => {
+    const mobileKeywords = ['Android', 'iPhone', 'iPod', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson'];
+
+    for (let info of mobileKeywords) {
+      if (navigator.userAgent.match(info) !== null) return true;
+    }
+    return false;
+  };
+
+  const touchFunc = (event) => {
+    let type = null;
+    let touch = null;
+
+    switch (event.type) {
+      case 'touchstart':
+        type = 'mousedown';
+        touch = event.changedTouches[0];
+        startX = touch.clientX;
+        endX = 0;
+        break;
+      case 'touchend':
+        type = 'mouseup';
+        touch = event.changedTouches[0];
+        endX = touch.clientX;
+    }
+  };
+
   changePageFunc();
+
+  if (mobileCheck()) {
+    contentWrap.addEventListener('touchstart', touchFunc, false);
+    contentWrap.addEventListener('touchend', touchFunc, false);
+  }
+
+  let startX = 0;
+  let endX = 0;
 };

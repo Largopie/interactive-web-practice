@@ -1,3 +1,5 @@
+$mobile: 'only screen and (max-width: 720px)';
+
 body {
   overflow: hidden;
 }
@@ -13,10 +15,17 @@ body {
 
   .album {
     position: absolute;
+    display: flex;
+    align-items: center;
     visibility: hidden;
     opacity: 0;
     width: 600px;
     height: 400px;
+
+    @media #{$mobile} {
+      width: 300px;
+      height: 200px;
+    }
 
     &.active {
       visibility: visible;
@@ -27,6 +36,9 @@ body {
       }
       .disk {
         left: 35%;
+        @media #{$mobile} {
+          left: 30%;
+        }
       }
     }
 
@@ -37,6 +49,10 @@ body {
       height: 400px;
       cursor: pointer;
       transition: all 1s ease;
+      @media #{$mobile} {
+        width: 244px;
+        height: 244px;
+      }
 
       img {
         width: inherit;
@@ -59,6 +75,11 @@ body {
       transition-delay: 0.5s;
       transition: all 1s ease;
 
+      @media #{$mobile} {
+        width: 232px;
+        height: 232px;
+      }
+
       .disk_inner {
         position: absolute;
         width: 160px;
@@ -69,6 +90,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media #{$mobile} {
+          width: 72px;
+          height: 72px;
+        }
 
         &::after {
           content: '';
@@ -114,7 +140,7 @@ body {
       }
 
       &:hover {
-        background-color: rgb(0, 0, 0);
+        background-color: rgba(255, 255, 255, 0.8);
       }
     }
   }
