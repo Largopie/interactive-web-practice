@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  touch-action: none;
 
   .album {
     position: absolute;
@@ -50,8 +51,8 @@ body {
       cursor: pointer;
       transition: all 1s ease;
       @media #{$mobile} {
-        width: 244px;
-        height: 244px;
+        width: 200px;
+        height: 200px;
       }
 
       img {
@@ -76,8 +77,8 @@ body {
       transition: all 1s ease;
 
       @media #{$mobile} {
-        width: 232px;
-        height: 232px;
+        width: 192px;
+        height: 192px;
       }
 
       .disk_inner {

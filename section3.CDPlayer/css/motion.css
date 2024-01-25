@@ -10,6 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  touch-action: none;
 }
 .contentWrap .album {
   position: absolute;
@@ -51,8 +52,8 @@ body {
 }
 @media only screen and (max-width: 720px) {
   .contentWrap .album .cover {
-    width: 244px;
-    height: 244px;
+    width: 200px;
+    height: 200px;
   }
 }
 .contentWrap .album .cover img {
@@ -76,8 +77,8 @@ body {
 }
 @media only screen and (max-width: 720px) {
   .contentWrap .album .disk {
-    width: 232px;
-    height: 232px;
+    width: 192px;
+    height: 192px;
   }
 }
 .contentWrap .album .disk .disk_inner {

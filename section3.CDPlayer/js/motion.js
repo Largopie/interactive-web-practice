@@ -77,6 +77,20 @@ window.onload = () => {
         type = 'mouseup';
         touch = event.changedTouches[0];
         endX = touch.clientX;
+
+        const touchLeftToRightRange = startX - endX;
+        const touchRightToLeftRange = Math.abs(startX - endX);
+
+        if (touchLeftToRightRange < -100) {
+          console.log('touchLeftToRightRange');
+          pageNum--;
+          if (pageNum === -1) pageNum = totalNum - 1;
+        } else if (touchRightToLeftRange > 100) {
+          pageNum++;
+          if (pageNum === totalNum) pageNum = 0;
+        }
+
+        changePageFunc();
     }
   };
 
